@@ -1,0 +1,33 @@
+{%- comment -%}
+  Card prodotto in stile Sciuscià.
+  Parametri: card_product (oggetto prodotto)
+{%- endcomment -%}
+{%- assign p = card_product -%}
+<article class="card">
+  <a class="card-link" href="{{ p.url }}" aria-label="{{ p.title | escape }}">
+    <div class="card-img{% if p.featured_image %} has-image{% endif %}"
+         {% if p.featured_image %}style="background-image:url('{{ p.featured_image | image_url: width: 700 }}')"{% endif %}>
+      {%- if p.available == false -%}
+        <span class="card-tag">Esaurito</span>
+      {%- elsif p.compare_at_price > p.price -%}
+        <span class="card-tag">Offerta</span>
+      {%- elsif p.tags contains 'nuovo' -%}
+        <span class="card-tag card-tag-nuovo">Nuovo</span>
+      {%- endif -%}
+      <span class="card-frase">{{ p.title }}</span>
+      <span class="card-marchio">Sciuscià · {{ settings.kicker_collezione }}</span>
+    </div>
+  </a>
+  <div class="card-corpo">
+    <a class="card-link" href="{{ p.url }}"><h3 class="card-nome">{{ p.title }}</h3></a>
+    <div class="card-piede">
+      <span class="card-prezzo">
+        {%- if p.compare_at_price > p.price -%}
+          <s class="card-prezzo-vecchio">{{ p.compare_at_price | money }}</s>
+        {%- endif -%}
+        {{ p.price | money }}
+      </span>
+      <a class="card-aggiungi" href="{{ p.url }}">Vedi</a>
+    </div>
+  </div>
+</article>

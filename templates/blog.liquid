@@ -1,0 +1,23 @@
+<section class="pagina-testa">
+  <div class="briciole"><a href="{{ routes.root_url }}">Home</a> / <span>{{ blog.title }}</span></div>
+  <h1>{{ blog.title }}</h1>
+</section>
+
+<section class="collezione">
+  <div class="griglia-prodotti">
+    {%- for article in blog.articles -%}
+      <article class="card">
+        <a class="card-link" href="{{ article.url }}">
+          <div class="card-img{% if article.image %} has-image{% endif %}"
+               {% if article.image %}style="background-image:url('{{ article.image | image_url: width: 700 }}')"{% endif %}>
+            <span class="card-frase">{{ article.title }}</span>
+          </div>
+          <div class="card-corpo">
+            <h3 class="card-nome">{{ article.title }}</h3>
+            <p class="card-desc">{{ article.excerpt_or_content | strip_html | truncatewords: 20 }}</p>
+          </div>
+        </a>
+      </article>
+    {%- endfor -%}
+  </div>
+</section>

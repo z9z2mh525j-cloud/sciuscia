@@ -1,0 +1,56 @@
+{%- comment -%} Footer {%- endcomment -%}
+<footer class="footer">
+  <div class="footer-col">
+    <a href="{{ routes.root_url }}" class="logo logo-footer">
+      {% render 'monogramma' %}<span class="logo-testo">{{ shop.name }}</span><span class="logo-dot">.</span>
+    </a>
+    <p>{{ section.settings.testo }}</p>
+  </div>
+
+  {%- for block in section.blocks -%}
+    <div class="footer-col">
+      <h4>{{ block.settings.titolo }}</h4>
+      {%- if block.settings.menu != blank -%}
+        {%- for link in block.settings.menu.links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+
+  <p class="footer-copy">© {{ 'now' | date: '%Y' }} {{ shop.name }} · Fatto cu ammore a Napoli</p>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "testo",
+      "label": "Testo descrizione",
+      "default": "Ventagli napoletani. Estate senza filtri, dal 2026."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "colonna",
+      "name": "Colonna menu",
+      "settings": [
+        { "type": "text", "id": "titolo", "label": "Titolo", "default": "Naviga" },
+        { "type": "link_list", "id": "menu", "label": "Menu" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        { "type": "colonna", "settings": { "titolo": "Naviga" } },
+        { "type": "colonna", "settings": { "titolo": "Aiuto" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

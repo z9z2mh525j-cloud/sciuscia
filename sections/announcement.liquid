@@ -1,0 +1,37 @@
+{%- comment -%} Barra annuncio scorrevole {%- endcomment -%}
+<div class="annuncio">
+  <div class="annuncio-track">
+    {%- for i in (1..2) -%}
+      {%- for block in section.blocks -%}
+        <span>{{ block.settings.testo }}</span><span>•</span>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Barra annuncio",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "messaggio",
+      "name": "Messaggio",
+      "settings": [
+        { "type": "text", "id": "testo", "label": "Testo", "default": "Spedizione gratis sopra i 49€" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Barra annuncio",
+      "blocks": [
+        { "type": "messaggio", "settings": { "testo": "Spedizione gratis sopra i 49€" } },
+        { "type": "messaggio", "settings": { "testo": "Fatti a mano a Napoli" } },
+        { "type": "messaggio", "settings": { "testo": "CH SFACCIMM E CAVR" } },
+        { "type": "messaggio", "settings": { "testo": "Collezione 2026" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,34 @@
+{%- comment -%} Header con logo, menu e carrello {%- endcomment -%}
+<header class="header">
+  <a href="{{ routes.root_url }}" class="logo">
+    {%- if settings.logo != blank -%}
+      <img src="{{ settings.logo | image_url: width: 220 }}" alt="{{ shop.name | escape }}" class="logo-img">
+    {%- else -%}
+      {% render 'monogramma' %}<span class="logo-testo">{{ shop.name }}</span><span class="logo-dot">.</span>
+    {%- endif -%}
+  </a>
+
+  <nav class="nav">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}"{% if link.active %} class="attivo"{% endif %}>{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
+
+  <a href="{{ routes.cart_url }}" class="btn-carrello">
+    Carrello <span class="carrello-conta">{{ cart.item_count }}</span>
+  </a>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

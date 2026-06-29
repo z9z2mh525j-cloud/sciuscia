@@ -1,0 +1,23 @@
+<section class="pagina-testa pagina-testa-stretta">
+  <div class="briciole"><a href="{{ routes.account_url }}">Account</a> / <span>Indirizzi</span></div>
+  <h1>'E tuoi indirizzi</h1>
+</section>
+
+<div class="auth-box">
+  {%- form 'customer_address', customer.new_address -%}
+    {{ form.errors | default_errors }}
+    <label>Nome <input type="text" name="address[first_name]"></label>
+    <label>Cognome <input type="text" name="address[last_name]"></label>
+    <label>Indirizzo <input type="text" name="address[address1]"></label>
+    <label>Città <input type="text" name="address[city]"></label>
+    <label>CAP <input type="text" name="address[zip]"></label>
+    <label>Paese <input type="text" name="address[country]"></label>
+    <button type="submit" class="btn btn-primario btn-block">Aggiungi indirizzo</button>
+  {%- endform -%}
+
+  {%- for address in customer.addresses -%}
+    <div class="indirizzo">
+      <p class="rte">{{ address | format_address }}</p>
+    </div>
+  {%- endfor -%}
+</div>

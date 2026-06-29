@@ -1,0 +1,72 @@
+{%- comment -%} Pagina dettaglio prodotto {%- endcomment -%}
+<div class="pd-briciole">
+  <a href="{{ routes.root_url }}">Home</a> /
+  <a href="{{ routes.all_products_collection_url }}">Collezione</a> /
+  <span>{{ product.title }}</span>
+</div>
+
+<div class="pd">
+  <div class="pd-img{% if product.featured_image %} has-image{% endif %}"
+       {% if product.featured_image %}style="background-image:url('{{ product.featured_image | image_url: width: 1200 }}')"{% endif %}>
+    {%- unless product.available -%}<span class="card-tag">Esaurito</span>{%- endunless -%}
+    {%- unless product.featured_image -%}
+      <span class="pd-frase">{{ product.title }}</span>
+      <span class="pd-marchio">Sciuscià · {{ settings.kicker_collezione }}</span>
+    {%- endunless -%}
+  </div>
+
+  <div class="pd-info">
+    <p class="kicker">{{ settings.kicker_collezione }}</p>
+    <h1 class="pd-nome">{{ product.title }}</h1>
+    <p class="pd-prezzo">
+      {%- if product.compare_at_price > product.price -%}
+        <s class="card-prezzo-vecchio">{{ product.compare_at_price | money }}</s>
+      {%- endif -%}
+      {{ product.price | money }}
+    </p>
+
+    {%- if product.description != blank -%}
+      <div class="pd-dettaglio rte">{{ product.description }}</div>
+    {%- endif -%}
+
+    {%- form 'product', product, class: 'pd-form' -%}
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          <label class="pd-opzione">{{ option.name }}
+            <select name="options[{{ option.name | escape }}]">
+              {%- for value in option.values -%}
+                <option value="{{ value | escape }}">{{ value }}</option>
+              {%- endfor -%}
+            </select>
+          </label>
+        {%- endfor -%}
+      {%- endunless -%}
+
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+      <div class="pd-azioni">
+        <div class="qta-box">
+          <button type="button" class="qta-meno" aria-label="Meno">−</button>
+          <input class="qta-input" type="number" name="quantity" value="1" min="1" aria-label="Quantità">
+          <button type="button" class="qta-piu" aria-label="Più">+</button>
+        </div>
+        <button type="submit" name="add" class="btn btn-primario pd-aggiungi"{% unless product.available %} disabled{% endunless %}>
+          {%- if product.available -%}Aggiungi al carrello{%- else -%}Esaurito{%- endif -%}
+        </button>
+      </div>
+    {%- endform -%}
+
+    <div class="pd-perks">
+      <span>Spedizione gratis sopra 49€</span>
+      <span>Serigrafato a mano a Napoli</span>
+      <span>Reso facile entro 30 giorni</span>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Pagina prodotto",
+  "settings": []
+}
+{% endschema %}

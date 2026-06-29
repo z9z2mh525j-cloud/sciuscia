@@ -1,0 +1,20 @@
+{%- comment -%} Banner con la frase manifesto {%- endcomment -%}
+<section class="banner-frase">
+  {%- if section.settings.piccolo != blank -%}<p class="banner-piccolo">{{ section.settings.piccolo }}</p>{%- endif -%}
+  <h2 class="banner-grande">{{ section.settings.frase }}</h2>
+  {%- if section.settings.trad != blank -%}<p class="banner-trad">{{ section.settings.trad }}</p>{%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Banner frase",
+  "settings": [
+    { "type": "text", "id": "piccolo", "label": "Sopra-titolo", "default": "'O detto 'e casa nosta" },
+    { "type": "text", "id": "frase", "label": "Frase grande", "default": "CH SFACCIMM E CAVR" },
+    { "type": "richtext", "id": "trad", "label": "Traduzione", "default": "<p>«Che caldo tremendo». Quello che dici a luglio, alle tre del pomeriggio, sotto 'o sole 'e Mergellina.</p>" }
+  ],
+  "presets": [
+    { "name": "Banner frase" }
+  ]
+}
+{% endschema %}

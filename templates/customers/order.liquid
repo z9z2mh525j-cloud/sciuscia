@@ -1,0 +1,21 @@
+<section class="pagina-testa pagina-testa-stretta">
+  <div class="briciole"><a href="{{ routes.account_url }}">Account</a> / <span>{{ order.name }}</span></div>
+  <h1>Ordine {{ order.name }}</h1>
+  <p class="pagina-intro">{{ order.created_at | date: '%d/%m/%Y' }} · {{ order.financial_status_label }}</p>
+</section>
+
+<div class="pagina-contenuto">
+  <table class="account-tabella">
+    <thead><tr><th>Prodotto</th><th>Qtà</th><th>Totale</th></tr></thead>
+    <tbody>
+      {%- for line in order.line_items -%}
+        <tr><td>{{ line.title }}</td><td>{{ line.quantity }}</td><td>{{ line.final_line_price | money }}</td></tr>
+      {%- endfor -%}
+    </tbody>
+    <tfoot>
+      <tr><td colspan="2">Subtotale</td><td>{{ order.line_items_subtotal_price | money }}</td></tr>
+      <tr><td colspan="2">Spedizione</td><td>{{ order.shipping_price | money }}</td></tr>
+      <tr><td colspan="2"><strong>Totale</strong></td><td><strong>{{ order.total_price | money }}</strong></td></tr>
+    </tfoot>
+  </table>
+</div>

@@ -1,0 +1,50 @@
+{%- comment -%} Collezione in evidenza (es. Nuovi arrivi) {%- endcomment -%}
+<section class="collezione">
+  <div class="sezione-testa">
+    {%- if section.settings.kicker != blank -%}<p class="kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+    <h2>{{ section.settings.title }}</h2>
+    {%- if section.settings.intro != blank -%}<p class="sezione-intro">{{ section.settings.intro }}</p>{%- endif -%}
+  </div>
+
+  {%- assign coll = collections[section.settings.collection] -%}
+  <div class="griglia-prodotti">
+    {%- if coll != blank and coll.products_count > 0 -%}
+      {%- for product in coll.products limit: section.settings.limite -%}
+        {% render 'product-card', card_product: product %}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for i in (1..3) -%}
+        <article class="card card-placeholder">
+          <div class="card-img"><span class="card-frase">CH SFACCIMM E CAVR</span><span class="card-marchio">Sciuscià · {{ settings.kicker_collezione }}</span></div>
+          <div class="card-corpo">
+            <h3 class="card-nome">Prodotto di esempio</h3>
+            <div class="card-piede"><span class="card-prezzo">€24,90</span><span class="card-aggiungi">Vedi</span></div>
+          </div>
+        </article>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.mostra_link -%}
+    <div class="centro-azione">
+      <a href="{{ coll.url | default: routes.all_products_collection_url }}" class="btn btn-fantasma">Vedi tutta 'a collezione →</a>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Collezione in evidenza",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Etichetta", "default": "Appena sciute d''o laboratorio" },
+    { "type": "text", "id": "title", "label": "Titolo", "default": "Nuovi arrivi" },
+    { "type": "textarea", "id": "intro", "label": "Introduzione", "default": "'E ventaglie cchiù friske d''a collezione 2026." },
+    { "type": "collection", "id": "collection", "label": "Collezione" },
+    { "type": "range", "id": "limite", "label": "Quanti prodotti", "min": 2, "max": 12, "step": 1, "default": 3 },
+    { "type": "checkbox", "id": "mostra_link", "label": "Mostra link alla collezione", "default": true }
+  ],
+  "presets": [
+    { "name": "Collezione in evidenza" }
+  ]
+}
+{% endschema %}

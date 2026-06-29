@@ -1,0 +1,16 @@
+{
+  "current": {
+    "kicker_collezione": "Collezione 2026",
+    "col_blu": "#1f6fb2",
+    "col_limone": "#f3d016",
+    "col_crema": "#fbf6e9"
+  },
+  "presets": {
+    "Sciuscià": {
+      "kicker_collezione": "Collezione 2026",
+      "col_blu": "#1f6fb2",
+      "col_limone": "#f3d016",
+      "col_crema": "#fbf6e9"
+    }
+  }
+}

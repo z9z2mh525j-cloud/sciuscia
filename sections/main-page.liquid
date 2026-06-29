@@ -1,0 +1,16 @@
+{%- comment -%} Pagina generica {%- endcomment -%}
+<section class="pagina-testa">
+  <div class="briciole"><a href="{{ routes.root_url }}">Home</a> / <span>{{ page.title }}</span></div>
+  <h1>{{ page.title }}</h1>
+</section>
+
+<div class="pagina-contenuto rte">
+  {{ page.content }}
+</div>
+
+{% schema %}
+{
+  "name": "Pagina",
+  "settings": []
+}
+{% endschema %}

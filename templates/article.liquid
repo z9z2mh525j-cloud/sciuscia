@@ -1,0 +1,12 @@
+<section class="pagina-testa">
+  <div class="briciole"><a href="{{ blog.url }}">{{ blog.title }}</a> / <span>{{ article.title }}</span></div>
+  <h1>{{ article.title }}</h1>
+  <p class="pagina-intro">{{ article.published_at | date: '%d/%m/%Y' }}{% if article.author != blank %} · {{ article.author }}{% endif %}</p>
+</section>
+
+<div class="pagina-contenuto rte">
+  {%- if article.image -%}
+    <img src="{{ article.image | image_url: width: 1000 }}" alt="{{ article.title | escape }}" style="border-radius:18px;margin-bottom:24px">
+  {%- endif -%}
+  {{ article.content }}
+</div>

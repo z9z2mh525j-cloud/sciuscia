@@ -1,0 +1,35 @@
+{%- comment -%} Sezione storia (immagine + testo) {%- endcomment -%}
+<section class="storia">
+  <div class="storia-img">
+    {%- if section.settings.immagine != blank -%}
+      <img src="{{ section.settings.immagine | image_url: width: 900 }}" alt="" class="storia-foto">
+    {%- else -%}
+      {% render 'monogramma', extra_class: 'storia-mono' %}
+    {%- endif -%}
+  </div>
+  <div class="storia-testo">
+    {%- if section.settings.kicker != blank -%}<p class="kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+    <h2>{{ section.settings.titolo }}</h2>
+    <div class="storia-rt">{{ section.settings.testo }}</div>
+    {%- if section.settings.cta_testo != blank -%}
+      <a href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}" class="btn btn-primario">{{ section.settings.cta_testo }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Storia",
+  "settings": [
+    { "type": "image_picker", "id": "immagine", "label": "Immagine (opzionale)" },
+    { "type": "text", "id": "kicker", "label": "Etichetta", "default": "'A Storia" },
+    { "type": "text", "id": "titolo", "label": "Titolo", "default": "Nato sotto 'o Vesuvio, cresciuto a Capri" },
+    { "type": "richtext", "id": "testo", "label": "Testo", "default": "<p>Sciuscià nasce da un'idea semplice: l'estate al Sud non è quella delle cartoline patinate. È sudore, granita 'e limone, motorino, e 'o ventaglio d''a nonna ca nun se ferma maje.</p>" },
+    { "type": "text", "id": "cta_testo", "label": "Bottone testo", "default": "Trase 'int''a collezione" },
+    { "type": "url", "id": "cta_link", "label": "Bottone link" }
+  ],
+  "presets": [
+    { "name": "Storia" }
+  ]
+}
+{% endschema %}

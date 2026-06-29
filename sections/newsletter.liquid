@@ -1,0 +1,29 @@
+{%- comment -%} Newsletter {%- endcomment -%}
+<section class="contatti">
+  <div class="contatti-box">
+    <h2>{{ section.settings.titolo }}</h2>
+    {%- if section.settings.testo != blank -%}<p>{{ section.settings.testo }}</p>{%- endif -%}
+    {%- form 'customer', class: 'form-news' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      {%- if form.posted_successfully? -%}
+        <p class="form-esito">Iscritto! Mo' sì 'e casa</p>
+      {%- else -%}
+        <input type="email" name="contact[email]" placeholder="'A tua email" required aria-label="Email">
+        <button type="submit" class="btn btn-primario">Iscrivimi</button>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    { "type": "text", "id": "titolo", "label": "Titolo", "default": "Vuó sapé 'e novità?" },
+    { "type": "textarea", "id": "testo", "label": "Testo", "default": "Iscriviti. Niente spam, sulo limoni e ventaglie nuove." }
+  ],
+  "presets": [
+    { "name": "Newsletter" }
+  ]
+}
+{% endschema %}

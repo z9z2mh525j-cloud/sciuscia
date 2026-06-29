@@ -1,0 +1,44 @@
+{
+  "general": {
+    "page": "Pagina",
+    "search": {
+      "search": "Cerca",
+      "placeholder": "Cerca…",
+      "results": "Risultati",
+      "no_results": "Nun ce sta niente pe' «{{ terms }}»."
+    },
+    "404": {
+      "title": "Pagina nun trovata",
+      "subtext": "'A pagina ca cerchi nun esiste cchiù."
+    },
+    "newsletter": {
+      "label": "Email",
+      "submit": "Iscrivimi"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Aggiungi al carrello",
+      "sold_out": "Esaurito",
+      "unavailable": "Non disponibile",
+      "quantity": "Quantità",
+      "price": "Prezzo"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "'O tuo carrello",
+      "empty": "'O carrello è vacante.",
+      "subtotal": "Subtotale",
+      "checkout": "Vai 'a cassa",
+      "continue": "Continua a sfizià",
+      "remove": "Rimuovi",
+      "update": "Aggiorna"
+    }
+  },
+  "customer": {
+    "account": { "title": "Account", "details": "Dettagli account", "logout": "Esci" },
+    "login": { "title": "Accedi", "email": "Email", "password": "Password", "submit": "Accedi", "register": "Registrati" },
+    "register": { "title": "Crea account", "submit": "Crea" }
+  }
+}

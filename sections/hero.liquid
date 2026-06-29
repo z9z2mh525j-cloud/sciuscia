@@ -1,0 +1,63 @@
+{%- comment -%} Hero homepage {%- endcomment -%}
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    {%- if section.settings.kicker != blank -%}
+      <p class="hero-kicker">{{ section.settings.kicker }}</p>
+    {%- endif -%}
+    <h1 class="hero-titolo">{{ section.settings.titolo }}</h1>
+    {%- if section.settings.sottotitolo != blank -%}
+      <p class="hero-sub">{{ section.settings.sottotitolo }}</p>
+    {%- endif -%}
+    <div class="hero-azioni">
+      {%- if section.settings.cta_testo != blank -%}
+        <a href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}" class="btn btn-primario">{{ section.settings.cta_testo }}</a>
+      {%- endif -%}
+      {%- if section.settings.cta2_testo != blank -%}
+        <a href="{{ section.settings.cta2_link }}" class="btn btn-fantasma">{{ section.settings.cta2_testo }}</a>
+      {%- endif -%}
+    </div>
+    <div class="hero-frecce">
+      {%- for block in section.blocks -%}
+        <div class="freccia-item"><strong>{{ block.settings.numero }}</strong><span>{{ block.settings.etichetta }}</span></div>
+      {%- endfor -%}
+    </div>
+  </div>
+  {% render 'monogramma', extra_class: 'hero-ventaglio' %}
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Etichetta", "default": "Da Napoli a Capri · Collezione 2026" },
+    { "type": "richtext", "id": "titolo", "label": "Titolo", "default": "<p>L'estate napoletana, senza filtri.</p>" },
+    { "type": "textarea", "id": "sottotitolo", "label": "Sottotitolo", "default": "Ventagli fatti a mano in bambù e cotone. Quando 'o sole spacca 'e ppietre e tu te fai vento cu stile." },
+    { "type": "text", "id": "cta_testo", "label": "Bottone 1 testo", "default": "Scegli 'o tuoio" },
+    { "type": "url", "id": "cta_link", "label": "Bottone 1 link" },
+    { "type": "text", "id": "cta2_testo", "label": "Bottone 2 testo", "default": "Ce sta 'na storia" },
+    { "type": "url", "id": "cta2_link", "label": "Bottone 2 link" }
+  ],
+  "blocks": [
+    {
+      "type": "freccia",
+      "name": "Punto forza",
+      "settings": [
+        { "type": "text", "id": "numero", "label": "Valore", "default": "100%" },
+        { "type": "text", "id": "etichetta", "label": "Etichetta", "default": "cotone" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        { "type": "freccia", "settings": { "numero": "100%", "etichetta": "cotone" } },
+        { "type": "freccia", "settings": { "numero": "Bambù", "etichetta": "naturale" } },
+        { "type": "freccia", "settings": { "numero": "Made in", "etichetta": "Napoli" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

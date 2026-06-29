@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "hero": { "type": "hero" },
+    "nuovi": {
+      "type": "featured-collection",
+      "settings": {
+        "kicker": "Appena sciute d''o laboratorio",
+        "title": "Nuovi arrivi",
+        "intro": "'E ventaglie cchiù friske d''a collezione 2026. Fatti a mano questa settimana.",
+        "limite": 3,
+        "mostra_link": true
+      }
+    },
+    "banner": { "type": "banner-frase" },
+    "storia": { "type": "storia" },
+    "valori": { "type": "valori" },
+    "newsletter": { "type": "newsletter" }
+  },
+  "order": ["hero", "nuovi", "banner", "storia", "valori", "newsletter"]
+}

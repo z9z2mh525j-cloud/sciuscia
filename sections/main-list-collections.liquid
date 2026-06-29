@@ -1,0 +1,30 @@
+{%- comment -%} Elenco di tutte le collezioni {%- endcomment -%}
+<section class="pagina-testa">
+  <div class="briciole"><a href="{{ routes.root_url }}">Home</a> / <span>Collezioni</span></div>
+  <p class="kicker">{{ settings.kicker_collezione }}</p>
+  <h1>'E collezioni nuoste</h1>
+</section>
+
+<section class="collezione">
+  <div class="griglia-prodotti">
+    {%- for collection in collections -%}
+      <article class="card">
+        <a class="card-link" href="{{ collection.url }}">
+          <div class="card-img{% if collection.featured_image %} has-image{% endif %}"
+               {% if collection.featured_image %}style="background-image:url('{{ collection.featured_image | image_url: width: 700 }}')"{% endif %}>
+            <span class="card-frase">{{ collection.title }}</span>
+            <span class="card-marchio">Sciuscià · {{ settings.kicker_collezione }}</span>
+          </div>
+          <div class="card-corpo">
+            <h3 class="card-nome">{{ collection.title }}</h3>
+            <div class="card-piede"><span class="card-prezzo">{{ collection.products_count }} pezzi</span><span class="card-aggiungi">Vedi</span></div>
+          </div>
+        </a>
+      </article>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Elenco collezioni", "settings": [] }
+{% endschema %}

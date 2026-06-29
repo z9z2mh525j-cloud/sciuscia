@@ -1,0 +1,28 @@
+{%- comment -%} Risultati ricerca {%- endcomment -%}
+<section class="pagina-testa">
+  <div class="briciole"><a href="{{ routes.root_url }}">Home</a> / <span>Cerca</span></div>
+  <h1>Cerca</h1>
+  <form action="{{ routes.search_url }}" method="get" class="form-cerca">
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Cerca 'nu ventaglio…" aria-label="Cerca">
+    <button type="submit" class="btn btn-primario">Cerca</button>
+  </form>
+</section>
+
+<section class="collezione">
+  {%- if search.performed -%}
+    <p class="sezione-intro" style="text-align:center">{{ search.results_count }} risultati</p>
+    <div class="griglia-prodotti">
+      {%- for item in search.results -%}
+        {%- if item.object_type == 'product' -%}
+          {% render 'product-card', card_product: item %}
+        {%- endif -%}
+      {%- else -%}
+        <p class="vuoto-filtro">Nun ce sta niente pe' «{{ search.terms }}».</p>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{ "name": "Ricerca", "settings": [] }
+{% endschema %}

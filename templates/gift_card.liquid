@@ -1,0 +1,14 @@
+<section class="pagina-testa">
+  {% render 'monogramma', extra_class: 'vuoto-mono' %}
+  <p class="kicker">Sciuscià</p>
+  <h1>Buono regalo</h1>
+  <p class="pagina-intro">Valore: <strong>{{ gift_card.initial_value | money }}</strong></p>
+</section>
+
+<div class="pagina-contenuto" style="text-align:center">
+  <div class="gift-codice">{{ gift_card.code | format_code }}</div>
+  {%- if gift_card.qr_identifier -%}
+    <img src="{{ gift_card.qr_identifier | payment_icon_png_url }}" alt="QR" style="margin:20px auto">
+  {%- endif -%}
+  <p class="pagina-intro">Saldo attuale: {{ gift_card.balance | money }}</p>
+</div>

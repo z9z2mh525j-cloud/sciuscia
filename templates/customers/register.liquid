@@ -1,0 +1,14 @@
+<section class="pagina-testa pagina-testa-stretta">
+  <h1>Crea account</h1>
+</section>
+<div class="auth-box">
+  {%- form 'create_customer' -%}
+    {{ form.errors | default_errors }}
+    <label>Nome <input type="text" name="customer[first_name]"></label>
+    <label>Cognome <input type="text" name="customer[last_name]"></label>
+    <label>Email <input type="email" name="customer[email]" required></label>
+    <label>Password <input type="password" name="customer[password]" required></label>
+    <button type="submit" class="btn btn-primario btn-block">Crea account</button>
+    <p class="auth-link"><a href="{{ routes.account_login_url }}" class="link-blu">Hai già un account? Accedi</a></p>
+  {%- endform -%}
+</div>

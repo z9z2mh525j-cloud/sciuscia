@@ -1,0 +1,58 @@
+{%- comment -%} Pagina carrello {%- endcomment -%}
+<section class="pagina-testa pagina-testa-stretta">
+  <div class="briciole"><a href="{{ routes.all_products_collection_url }}">Collezione</a> / <span>Carrello</span></div>
+  <p class="kicker">Quasi fatto</p>
+  <h1>'O tuo carrello</h1>
+</section>
+
+<div class="carrello-pagina">
+  {%- if cart.item_count == 0 -%}
+    <div class="checkout-vuoto">
+      {% render 'monogramma', extra_class: 'vuoto-mono' %}
+      <h2>'O carrello è vacante</h2>
+      <p>Primma scigli 'nu ventaglio, po' turnammo cca.</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn-primario">Vai 'a collezione</a>
+    </div>
+  {%- else -%}
+    {%- form 'cart', cart, class: 'carrello-form' -%}
+      <div class="carrello-righe">
+        {%- for item in cart.items -%}
+          <div class="riga">
+            <div class="riga-mini{% if item.image %} has-image{% endif %}"
+                 {% if item.image %}style="background-image:url('{{ item.image | image_url: width: 120 }}')"{% endif %}>
+              {%- unless item.image -%}{{ item.product.title | slice: 0, 2 | upcase }}{%- endunless -%}
+            </div>
+            <div class="riga-info">
+              <a href="{{ item.url }}" class="riga-nome">{{ item.product.title }}</a>
+              {%- unless item.product.has_only_default_variant -%}
+                <div class="riga-variante">{{ item.variant.title }}</div>
+              {%- endunless -%}
+              <div class="riga-prezzo">{{ item.final_price | money }}</div>
+              <div class="riga-qta">
+                <a class="qta-step" href="{{ item.url_to_remove }}" aria-label="Rimuovi uno">−</a>
+                <span>{{ item.quantity }}</span>
+                <a class="qta-step" href="{{ item.url_to_add }}" aria-label="Aggiungi uno">+</a>
+              </div>
+            </div>
+            <div class="riga-linea">{{ item.final_line_price | money }}</div>
+            <a class="riga-elimina" href="{{ item.url_to_remove }}" aria-label="Elimina">✕</a>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="carrello-riepilogo">
+        <div class="carrello-totale"><span>Subtotale</span><strong>{{ cart.total_price | money }}</strong></div>
+        <p class="carrello-nota">Spese di spedizione e tasse calcolate alla cassa.</p>
+        <button type="submit" name="checkout" class="btn btn-primario btn-block">Vai 'a cassa →</button>
+        <a href="{{ routes.all_products_collection_url }}" class="link-blu carrello-continua">Continua a sfizià</a>
+      </div>
+    {%- endform -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Carrello",
+  "settings": []
+}
+{% endschema %}

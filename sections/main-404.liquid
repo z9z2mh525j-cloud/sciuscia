@@ -1,0 +1,13 @@
+{%- comment -%} Pagina 404 {%- endcomment -%}
+<section class="pagina-testa">
+  {% render 'monogramma', extra_class: 'vuoto-mono' %}
+  <h1>Pagina nun trovata</h1>
+  <p class="pagina-intro">'A pagina ca cerchi nun esiste cchiù… ma 'e ventaglie sì!</p>
+  <div class="centro-azione">
+    <a href="{{ routes.all_products_collection_url }}" class="btn btn-primario">Vai 'a collezione</a>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "404", "settings": [] }
+{% endschema %}

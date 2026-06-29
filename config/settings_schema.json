@@ -1,0 +1,54 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Sciuscià",
+    "theme_version": "1.0.0",
+    "theme_author": "Sciuscià",
+    "theme_documentation_url": "https://github.com/z9z2mh525j-cloud/sciuscia",
+    "theme_support_url": "https://github.com/z9z2mh525j-cloud/sciuscia"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo (opzionale, altrimenti usa il nome del negozio)"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "kicker_collezione",
+        "label": "Etichetta collezione",
+        "default": "Collezione 2026"
+      }
+    ]
+  },
+  {
+    "name": "Colori",
+    "settings": [
+      {
+        "type": "color",
+        "id": "col_blu",
+        "label": "Blu Mediterraneo",
+        "default": "#1f6fb2"
+      },
+      {
+        "type": "color",
+        "id": "col_limone",
+        "label": "Giallo limone",
+        "default": "#f3d016"
+      },
+      {
+        "type": "color",
+        "id": "col_crema",
+        "label": "Crema (sfondo)",
+        "default": "#fbf6e9"
+      }
+    ]
+  }
+]

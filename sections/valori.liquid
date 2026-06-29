@@ -1,0 +1,55 @@
+{%- comment -%} Sezione valori "fatto a mano" {%- endcomment -%}
+<section class="artigianato">
+  <div class="sezione-testa">
+    {%- if section.settings.kicker != blank -%}<p class="kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+    <h2>{{ section.settings.titolo }}</h2>
+  </div>
+  <div class="griglia-valori">
+    {%- for block in section.blocks -%}
+      <div class="valore">
+        {%- case block.settings.icona -%}
+          {%- when 'bambu' -%}
+            <svg class="valore-icona" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13c0-6 7-9 7-9s2 2 2 6"/><path d="M4 13C9 13 12 8 12 4"/><path d="M11 20v-4"/></svg>
+          {%- when 'mano' -%}
+            <svg class="valore-icona" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          {%- else -%}
+            <svg class="valore-icona" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 12h18"/><path d="M12 8v13"/><path d="M12 8S10 3 7.5 3 5 6 8 8"/><path d="M12 8s2-5 4.5-5S19 6 16 8"/></svg>
+        {%- endcase -%}
+        <h3>{{ block.settings.titolo }}</h3>
+        <p>{{ block.settings.testo }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Valori",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Etichetta", "default": "Fatto a mano" },
+    { "type": "text", "id": "titolo", "label": "Titolo", "default": "Tre cose, fatte buone" }
+  ],
+  "blocks": [
+    {
+      "type": "valore",
+      "name": "Valore",
+      "settings": [
+        { "type": "select", "id": "icona", "label": "Icona", "options": [ { "value": "bambu", "label": "Bambù" }, { "value": "mano", "label": "Mano/stampa" }, { "value": "regalo", "label": "Regalo" } ], "default": "bambu" },
+        { "type": "text", "id": "titolo", "label": "Titolo", "default": "Bambù vero" },
+        { "type": "textarea", "id": "testo", "label": "Testo", "default": "Stecche in bambù naturale, leggere e resistenti." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Valori",
+      "blocks": [
+        { "type": "valore", "settings": { "icona": "bambu", "titolo": "Bambù vero", "testo": "Stecche in bambù naturale, leggere e resistenti. Sostenibile e profumato 'e mare." } },
+        { "type": "valore", "settings": { "icona": "mano", "titolo": "Stampa a mano", "testo": "Ogni frase è serigrafata a Napoli. Piccole imperfezioni = pezzo unico." } },
+        { "type": "valore", "settings": { "icona": "regalo", "titolo": "Pronto 'a regalo", "testo": "Arriva in una scatola caprese cu 'o bigliettino." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
