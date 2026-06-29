@@ -1,20 +1,89 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "hero": { "type": "hero" },
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "kicker": "Da Napoli a Capri · Collezione 2026",
+        "titolo": "<p>L'estate napoletana, senza filtri.</p>",
+        "sottotitolo": "Ventagli fatti a mano in bambù e cotone. Quando 'o sole spacca 'e ppietre e tu te fai vento cu stile.",
+        "cta_testo": "Scegli 'o tuoio",
+        "cta_link": "",
+        "cta2_testo": "Ce sta 'na storia",
+        "cta2_link": ""
+      }
+    },
     "nuovi": {
       "type": "featured-collection",
       "settings": {
         "kicker": "Appena sciute d''o laboratorio",
         "title": "Nuovi arrivi",
         "intro": "'E ventaglie cchiù friske d''a collezione 2026. Fatti a mano questa settimana.",
+        "collection": "",
         "limite": 3,
         "mostra_link": true
       }
     },
-    "banner": { "type": "banner-frase" },
-    "storia": { "type": "storia" },
-    "valori": { "type": "valori" },
-    "newsletter": { "type": "newsletter" }
+    "banner": {
+      "type": "banner-frase",
+      "settings": {
+        "piccolo": "'O detto 'e casa nosta",
+        "frase": "CH SFACCIMM E CAVR",
+        "trad": "<p>«Che caldo tremendo». Quello che dici a luglio, alle tre del pomeriggio, sotto 'o sole 'e Mergellina.</p>"
+      }
+    },
+    "storia": {
+      "type": "storia",
+      "settings": {
+        "kicker": "'A Storia",
+        "titolo": "Nato sotto 'o Vesuvio, cresciuto a Capri",
+        "testo": "<p>Sciuscià nasce da un'idea semplice: l'estate al Sud non è quella delle cartoline patinate. È sudore, granita 'e limone, motorino, e 'o ventaglio d''a nonna ca nun se ferma maje.</p>",
+        "cta_testo": "Trase 'int''a collezione",
+        "cta_link": ""
+      }
+    },
+    "valori": {
+      "type": "valori",
+      "settings": {
+        "kicker": "Fatto a mano",
+        "titolo": "Tre cose, fatte buone"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "titolo": "Vuó sapé 'e novità?",
+        "testo": "Iscriviti. Niente spam, sulo limoni e ventaglie nuove."
+      }
+    },
+    "featured_collection_jzjjWw": {
+      "type": "featured-collection",
+      "name": "Collezione in evidenza",
+      "settings": {
+        "kicker": "Appena sciute d''o laboratorio",
+        "title": "Nuovi arrivi",
+        "intro": "'E ventaglie cchiù friske d''a collezione 2026.",
+        "collection": "frontpage",
+        "limite": 3,
+        "mostra_link": true
+      }
+    }
   },
-  "order": ["hero", "nuovi", "banner", "storia", "valori", "newsletter"]
+  "order": [
+    "hero",
+    "nuovi",
+    "banner",
+    "storia",
+    "valori",
+    "newsletter",
+    "featured_collection_jzjjWw"
+  ]
 }
