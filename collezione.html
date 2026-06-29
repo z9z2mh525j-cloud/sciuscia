@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collezione 2026 — Sciuscià</title>
+  <meta name="description" content="Tutta la collezione di ventagli napoletani Sciuscià. Frasi verace, bambù e cotone, fatti a mano a Napoli." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="annuncio">
+    <div class="annuncio-track">
+      <span>Spedizione gratis sopra i 49€</span><span>•</span>
+      <span>Fatti a mano a Napoli</span><span>•</span>
+      <span>CH SFACCIMM E CAVR</span><span>•</span>
+      <span>Collezione 2026</span><span>•</span>
+      <span>Spedizione gratis sopra i 49€</span><span>•</span>
+      <span>Fatti a mano a Napoli</span><span>•</span>
+      <span>CH SFACCIMM E CAVR</span><span>•</span>
+      <span>Collezione 2026</span><span>•</span>
+    </div>
+  </div>
+
+  <header class="header">
+    <a href="index.html" class="logo">Sciuscià<span class="logo-dot">.</span></a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="collezione.html" class="attivo">Collezione</a>
+      <a href="index.html#storia">'A Storia</a>
+      <a href="index.html#artigianato">Fatto a mano</a>
+    </nav>
+    <button class="btn-carrello" data-apri-carrello>
+      Carrello <span class="carrello-conta">0</span>
+    </button>
+  </header>
+
+  <!-- Intestazione pagina -->
+  <section class="pagina-testa">
+    <div class="briciole"><a href="index.html">Home</a> / <span>Collezione</span></div>
+    <p class="kicker">Collezione 2026</p>
+    <h1>Tutt''e ventaglie nuoste</h1>
+    <p class="pagina-intro">Scegli 'o ventaglio ca te rappresenta. Frasi napoletane verace, una cchiù bella 'e ll'ata.</p>
+  </section>
+
+  <!-- Filtri -->
+  <div class="filtri" id="filtri">
+    <button class="filtro attivo" data-filtro="tutti">Tutti</button>
+    <button class="filtro" data-filtro="nuovo">Nuovi arrivi</button>
+    <button class="filtro" data-filtro="Best seller">Best seller</button>
+    <button class="filtro" data-filtro="Regalo">Idee regalo</button>
+  </div>
+
+  <!-- Griglia -->
+  <section class="collezione">
+    <div class="griglia-prodotti" id="grigliaTutti"></div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-col">
+      <a href="index.html" class="logo logo-footer">Sciuscià<span class="logo-dot">.</span></a>
+      <p>Ventagli napoletani.<br>Estate senza filtri, dal 2026.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Naviga</h4>
+      <a href="collezione.html">Collezione</a>
+      <a href="index.html#storia">'A Storia</a>
+      <a href="index.html#artigianato">Fatto a mano</a>
+    </div>
+    <div class="footer-col">
+      <h4>Aiuto</h4>
+      <a href="#">Spedizioni</a>
+      <a href="#">Resi</a>
+      <a href="index.html#contatti">Contatti</a>
+    </div>
+    <div class="footer-col">
+      <h4>Siegui</h4>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">Facebook</a>
+    </div>
+    <p class="footer-copy">© 2026 Sciuscià · Fatto cu ammore a Napoli</p>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="ui.js"></script>
+  <script>
+    const griglia = document.getElementById("grigliaTutti");
+    function render(filtro){
+      let lista = PRODOTTI;
+      if (filtro === "nuovo") lista = PRODOTTI.filter(p => p.nuovo);
+      else if (filtro !== "tutti") lista = PRODOTTI.filter(p => p.tag === filtro);
+      griglia.innerHTML = lista.length
+        ? lista.map(cardProdotto).join("")
+        : `<p class="vuoto-filtro">Nun ce sta niente cca 'mmiezo… pe' mo'.</p>`;
+    }
+    render("tutti");
+
+    document.getElementById("filtri").addEventListener("click", e => {
+      const b = e.target.closest(".filtro");
+      if (!b) return;
+      document.querySelectorAll(".filtro").forEach(f => f.classList.remove("attivo"));
+      b.classList.add("attivo");
+      render(b.dataset.filtro);
+    });
+  </script>
+</body>
+</html>

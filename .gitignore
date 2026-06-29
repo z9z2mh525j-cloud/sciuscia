@@ -1,0 +1,12 @@
+# Netlify
+.netlify/
+
+# OS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log

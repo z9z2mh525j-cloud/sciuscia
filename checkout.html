@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cassa — Sciuscià</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="annuncio">
+    <div class="annuncio-track">
+      <span>Pagamento sicuro</span><span>•</span>
+      <span>Fatti a mano a Napoli</span><span>•</span>
+      <span>Spedizione gratis sopra i 49€</span><span>•</span>
+      <span>Reso facile</span><span>•</span>
+      <span>Pagamento sicuro</span><span>•</span>
+      <span>Fatti a mano a Napoli</span><span>•</span>
+      <span>Spedizione gratis sopra i 49€</span><span>•</span>
+      <span>Reso facile</span><span>•</span>
+    </div>
+  </div>
+
+  <header class="header">
+    <a href="index.html" class="logo">Sciuscià<span class="logo-dot">.</span></a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="collezione.html">Collezione</a>
+    </nav>
+    <button class="btn-carrello" data-apri-carrello>
+      Carrello <span class="carrello-conta">0</span>
+    </button>
+  </header>
+
+  <section class="pagina-testa pagina-testa-stretta">
+    <div class="briciole"><a href="collezione.html">Collezione</a> / <span>Cassa</span></div>
+    <p class="kicker">Quasi fatto</p>
+    <h1>Vai 'a cassa</h1>
+    <p class="pagina-intro">Mettici 'e dati e 'o ventaglio parte verso 'e te.</p>
+  </section>
+
+  <!-- Se vuoto -->
+  <div class="checkout-vuoto" id="checkoutVuoto" hidden>
+    <h2>'O carrello è vacante</h2>
+    <p>Primma scigli 'nu ventaglio, po' turnammo cca.</p>
+    <a href="collezione.html" class="btn btn-primario">Vai 'a collezione</a>
+  </div>
+
+  <!-- Layout checkout -->
+  <div class="checkout" id="checkoutLayout">
+    <!-- Form -->
+    <form class="checkout-form" id="formCheckout" novalidate>
+      <fieldset>
+        <legend>'E tuoi dati</legend>
+        <div class="campo-griglia">
+          <label>Nome <input name="nome" required placeholder="Gennaro" /></label>
+          <label>Cognome <input name="cognome" required placeholder="Esposito" /></label>
+        </div>
+        <label>Email <input name="email" type="email" required placeholder="gennaro@email.it" /></label>
+        <label>Telefono <input name="tel" type="tel" required placeholder="333 1234567" /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Indirizzo 'e spedizione</legend>
+        <label>Indirizzo <input name="via" required placeholder="Via Toledo, 100" /></label>
+        <div class="campo-griglia">
+          <label>Città <input name="citta" required placeholder="Napoli" /></label>
+          <label>CAP <input name="cap" required placeholder="80100" inputmode="numeric" /></label>
+        </div>
+        <label>Provincia <input name="prov" required placeholder="NA" /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Pagamento</legend>
+        <label>Numero carta <input name="carta" required placeholder="1234 5678 9012 3456" inputmode="numeric" maxlength="19" /></label>
+        <div class="campo-griglia">
+          <label>Scadenza <input name="scad" required placeholder="MM/AA" maxlength="5" /></label>
+          <label>CVV <input name="cvv" required placeholder="123" inputmode="numeric" maxlength="4" /></label>
+        </div>
+        <p class="checkout-nota">Demo dimostrativa — nessun dato viene inviato o salvato.</p>
+      </fieldset>
+
+      <button type="submit" class="btn btn-primario btn-block btn-paga" id="btnPaga">
+        Paga <span id="totalePaga"></span> →
+      </button>
+    </form>
+
+    <!-- Riepilogo -->
+    <aside class="checkout-riepilogo">
+      <h3>'O tuo ordine</h3>
+      <div id="riepilogoRighe"></div>
+      <div class="riepilogo-conti">
+        <div class="conto-riga"><span>Subtotale</span><span id="subtotale">€0,00</span></div>
+        <div class="conto-riga"><span>Spedizione</span><span id="spedizione">—</span></div>
+        <div class="conto-riga conto-totale"><span>Totale</span><span id="totaleFinale">€0,00</span></div>
+      </div>
+      <div class="riepilogo-sicuro">Acquisto protetto · Fatto a Napoli</div>
+    </aside>
+  </div>
+
+  <!-- ANIMAZIONE SUCCESSO CAPRESE -->
+  <div class="successo" id="successo" aria-hidden="true">
+    <div class="successo-cielo"></div>
+    <div class="successo-mare"></div>
+    <span class="successo-sole" aria-hidden="true"></span>
+    <div class="coriandoli" id="coriandoli"></div>
+
+    <div class="successo-card">
+      <div class="successo-spunta">
+        <svg viewBox="0 0 80 80" width="80" height="80" aria-hidden="true">
+          <circle class="sp-cerchio" cx="40" cy="40" r="36" />
+          <path class="sp-segno" d="M24 41 L36 53 L57 28" />
+        </svg>
+      </div>
+      <svg class="successo-ventaglio" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12.8 19.6A2 2 0 1 0 14 16H2" />
+        <path d="M17.5 8a2.5 2.5 0 1 1 2 4H2" />
+        <path d="M9.8 4.4A2 2 0 1 1 11 8H2" />
+      </svg>
+      <p class="successo-kicker"> Jamme bell'!</p>
+      <h2 class="successo-titolo">Ordine confermato!</h2>
+      <p class="successo-testo" id="successoTesto"></p>
+      <p class="successo-ordine">N° ordine <strong id="numeroOrdine"></strong></p>
+      <div class="successo-azioni">
+        <a href="collezione.html" class="btn btn-primario">Continua a sfizià</a>
+        <a href="index.html" class="btn btn-fantasma">Torna 'a home</a>
+      </div>
+      <p class="successo-firma">Grazie assaje — 'o team Sciuscià</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-col">
+      <a href="index.html" class="logo logo-footer">Sciuscià<span class="logo-dot">.</span></a>
+      <p>Ventagli napoletani.<br>Estate senza filtri, dal 2026.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Naviga</h4>
+      <a href="collezione.html">Collezione</a>
+      <a href="index.html#storia">'A Storia</a>
+    </div>
+    <div class="footer-col">
+      <h4>Aiuto</h4>
+      <a href="#">Spedizioni</a>
+      <a href="#">Resi</a>
+    </div>
+    <p class="footer-copy">© 2026 Sciuscià · Fatto cu ammore a Napoli</p>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="checkout.js"></script>
+</body>
+</html>

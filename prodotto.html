@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prodotto — Sciuscià</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="annuncio">
+    <div class="annuncio-track">
+      <span>Spedizione gratis sopra i 49€</span><span>•</span>
+      <span>Fatti a mano a Napoli</span><span>•</span>
+      <span>CH SFACCIMM E CAVR</span><span>•</span>
+      <span>Collezione 2026</span><span>•</span>
+      <span>Spedizione gratis sopra i 49€</span><span>•</span>
+      <span>Fatti a mano a Napoli</span><span>•</span>
+      <span>CH SFACCIMM E CAVR</span><span>•</span>
+      <span>Collezione 2026</span><span>•</span>
+    </div>
+  </div>
+
+  <header class="header">
+    <a href="index.html" class="logo">Sciuscià<span class="logo-dot">.</span></a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="collezione.html">Collezione</a>
+      <a href="index.html#storia">'A Storia</a>
+      <a href="index.html#artigianato">Fatto a mano</a>
+    </nav>
+    <button class="btn-carrello" data-apri-carrello>
+      Carrello <span class="carrello-conta">0</span>
+    </button>
+  </header>
+
+  <main id="prodotto"><!-- iniettato da JS --></main>
+
+  <!-- Correlati -->
+  <section class="collezione collezione-correlati" id="correlatiWrap" hidden>
+    <div class="sezione-testa">
+      <p class="kicker">Pure chiste so' belle</p>
+      <h2>Te pò piacé pure…</h2>
+    </div>
+    <div class="griglia-prodotti" id="correlati"></div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-col">
+      <a href="index.html" class="logo logo-footer">Sciuscià<span class="logo-dot">.</span></a>
+      <p>Ventagli napoletani.<br>Estate senza filtri, dal 2026.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Naviga</h4>
+      <a href="collezione.html">Collezione</a>
+      <a href="index.html#storia">'A Storia</a>
+      <a href="index.html#artigianato">Fatto a mano</a>
+    </div>
+    <div class="footer-col">
+      <h4>Aiuto</h4>
+      <a href="#">Spedizioni</a>
+      <a href="#">Resi</a>
+      <a href="index.html#contatti">Contatti</a>
+    </div>
+    <div class="footer-col">
+      <h4>Siegui</h4>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">Facebook</a>
+    </div>
+    <p class="footer-copy">© 2026 Sciuscià · Fatto cu ammore a Napoli</p>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="ui.js"></script>
+  <script>
+    const id = new URLSearchParams(location.search).get("id");
+    const p = trovaProdotto(id);
+    const root = document.getElementById("prodotto");
+
+    if (!p){
+      root.innerHTML = `
+        <div class="prodotto-mancante">
+          <h1>Stu ventaglio nun esiste</h1>
+          <p>Forse l'avimmo già vennuto tutto…</p>
+          <a href="collezione.html" class="btn btn-primario">Torna 'a collezione</a>
+        </div>`;
+    } else {
+      document.title = p.nome + " — Sciuscià";
+      const tag = p.nuovo ? `<span class="card-tag card-tag-nuovo">Nuovo</span>`
+                          : (p.tag ? `<span class="card-tag">${p.tag}</span>` : "");
+      root.innerHTML = `
+        <div class="briciole pd-briciole">
+          <a href="index.html">Home</a> / <a href="collezione.html">Collezione</a> / <span>${p.nome}</span>
+        </div>
+        <div class="pd">
+          <div class="pd-img">
+            ${tag}
+            <span class="pd-frase">${p.frase}</span>
+            <span class="pd-marchio">Sciuscià · Collezione 2026</span>
+          </div>
+          <div class="pd-info">
+            <p class="kicker">${p.nuovo ? "Appena uscito · " : ""}Collezione 2026</p>
+            <h1 class="pd-nome">${p.nome}</h1>
+            <p class="pd-prezzo">${euro(p.prezzo)}</p>
+            <p class="pd-dettaglio">${p.dettaglio}</p>
+
+            <ul class="pd-carat">
+              ${p.caratteristiche.map(c => `<li>✓ ${c}</li>`).join("")}
+            </ul>
+
+            <div class="pd-colore"><span>Colore:</span> <strong>${p.colore}</strong></div>
+
+            <div class="pd-azioni">
+              <div class="qta-box">
+                <button type="button" id="qtaMeno" aria-label="Meno">−</button>
+                <input id="qtaProdotto" type="number" value="1" min="1" max="20" aria-label="Quantità" />
+                <button type="button" id="qtaPiu" aria-label="Più">+</button>
+              </div>
+              <button class="btn btn-primario pd-aggiungi" data-aggiungi="${p.id}">Aggiungi al carrello</button>
+            </div>
+
+            <div class="pd-perks">
+              <span>Spedizione gratis sopra 49€</span>
+              <span>Serigrafato a mano a Napoli</span>
+              <span>Reso facile entro 30 giorni</span>
+            </div>
+          </div>
+        </div>`;
+
+      // selettore quantità
+      const input = document.getElementById("qtaProdotto");
+      document.getElementById("qtaMeno").onclick = () =>
+        input.value = Math.max(1, parseInt(input.value || 1) - 1);
+      document.getElementById("qtaPiu").onclick = () =>
+        input.value = Math.min(20, parseInt(input.value || 1) + 1);
+
+      // correlati (altri prodotti)
+      const altri = PRODOTTI.filter(x => x.id !== p.id).slice(0, 3);
+      document.getElementById("correlati").innerHTML = altri.map(cardProdotto).join("");
+      document.getElementById("correlatiWrap").hidden = false;
+    }
+  </script>
+</body>
+</html>
