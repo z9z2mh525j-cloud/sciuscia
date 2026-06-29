@@ -14,21 +14,21 @@
       "disabled": true,
       "settings": {}
     },
-    "featured_collection_rwDypW": {
+    "featured_collection_3ywCRd": {
       "type": "featured-collection",
       "name": "Collezione in evidenza",
       "settings": {
-        "kicker": "",
-        "title": "i nostri ventagli",
+        "kicker": "Appena sciute d''o laboratorio",
+        "title": "Nuovi arrivi",
         "intro": "'E ventaglie cchiù friske d''a collezione 2026.",
-        "collection": "",
-        "limite": 2,
+        "collection": "frontpage",
+        "limite": 3,
         "mostra_link": true
       }
     }
   },
   "order": [
     "main",
-    "featured_collection_rwDypW"
+    "featured_collection_3ywCRd"
   ]
 }
