@@ -21,13 +21,14 @@
         "cta2_link": ""
       }
     },
-    "nuovi": {
+    "featured_collection_jzjjWw": {
       "type": "featured-collection",
+      "name": "Collezione in evidenza",
       "settings": {
         "kicker": "Appena sciute d''o laboratorio",
         "title": "Nuovi arrivi",
-        "intro": "'E ventaglie cchiù friske d''a collezione 2026. Fatti a mano questa settimana.",
-        "collection": "",
+        "intro": "'E ventaglie cchiù friske d''a collezione 2026.",
+        "collection": "frontpage",
         "limite": 3,
         "mostra_link": true
       }
@@ -63,27 +64,14 @@
         "titolo": "Vuó sapé 'e novità?",
         "testo": "Iscriviti. Niente spam, sulo limoni e ventaglie nuove."
       }
-    },
-    "featured_collection_jzjjWw": {
-      "type": "featured-collection",
-      "name": "Collezione in evidenza",
-      "settings": {
-        "kicker": "Appena sciute d''o laboratorio",
-        "title": "Nuovi arrivi",
-        "intro": "'E ventaglie cchiù friske d''a collezione 2026.",
-        "collection": "frontpage",
-        "limite": 3,
-        "mostra_link": true
-      }
     }
   },
   "order": [
     "hero",
-    "nuovi",
+    "featured_collection_jzjjWw",
     "banner",
     "storia",
     "valori",
-    "newsletter",
-    "featured_collection_jzjjWw"
+    "newsletter"
   ]
 }
